@@ -137,6 +137,10 @@ angsd -GL 1 -out BEAGLE/${line[0]} -r ${line[0]} -minQ 30 -P 10 \
 -minInd 348 -doGlf 2 -doMajorMinor 1 -doMaf 1 -minMaf 0.01 -SNP_pval 1e-6 -bam bamlist_filtered.txt  \
 -ref /scratch/bell/blackan/LEPC/shotgun/ncbi/ref_100kb.fa "  > ./jobs_beagle/filtered_${line[0]}.sh
 done < ./regions.txt
-#pcangsd -b  /scratch/bell/blackan/LEPC/shotgun/angsd_out_redo/LEPC.beagle.gz --selection --minMaf 0.01 --sites_save --tree -o  /scratch/bell/blackan/LEPC/shotgun/angsd_out_redo/LEPC --threads 100 --pcadapt
 
-#for i in `ls -1 *sh`; do  echo "sbatch $i" ; done > jobs ; source ./jobs
+for i in `ls -1 *sh`; do  echo "sbatch $i" ; done > jobs ; source ./jobs
+
+cd /scratch/bell/blackan/LEPC/shotgun/angsd_out/BEAGLE/
+for f in *.beagle.gz; do zcat ${f} | sed 1d   > tmpfile; mv tmpfile ${f}_trim; done
+zcat NW_026294820.1.beagle.gz | head -n 1 > beagle.header
+cat beagle.header  *_trim > filtered.beagle ; gzip filtered.beagle 
