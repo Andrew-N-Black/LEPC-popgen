@@ -53,3 +53,34 @@ Northern 0.8146  -
 Southern 0.0002  <2e-16  
 
 P value adjustment method: BH 
+
+
+#BY SPECIES
+HET_FILT$SPECIES<-factor(HET_FILT$SPECIES,levels = c("Tympanuchus pallidicinctus","Tympanuchus cupido"))
+
+group_by(HET_FILT, SPECIES) %>%
+    summarise(
+        count = n(),
+        mean = mean(HET, na.rm = TRUE),
+        sd = sd(HET, na.rm = TRUE),
+        median = median(HET, na.rm = TRUE),
+        IQR = IQR(HET, na.rm = TRUE)
+    )
+
+ SPECIES count    mean      sd
+  <fct>   <int>   <dbl>   <dbl>
+1 Tympan…   411 0.00324 5.16e-4
+2 Tympan…    22 0.00339 1.84e-4
+
+pairwise.wilcox.test(HET_FILT$HET, HET_FILT$SPECIES, p.adjust.method = "BH")
+
+	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+
+data:  HET_FILT$HET and HET_FILT$SPECIES 
+
+                   Tympanuchus pallidicinctus
+Tympanuchus cupido 7.4e-05                   
+
+P value adjustment method: BH 
+
+
