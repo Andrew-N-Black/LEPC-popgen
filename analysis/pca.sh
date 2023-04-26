@@ -10,4 +10,9 @@
 module load biocontainers
 module load pcangsd
 
-pcangsd -b final.beagle.gz -o final --threads 128 --minMaf 0.01 --admix --tree --tree_samples dps.txt
+pcangsd -b final.beagle.gz -o final --threads 128 --minMaf 0.01 --admix
+
+#For inbreeding estimate:
+pcangsd -b final.beagle.gz -o final_inbreed --threads 128 --minMaf 0.01 --maf_tole 1e-9 --tole 1e-9 --inbreedSamples --inbreedSites --iter 5000 --maf_iter 5000 --inbreed_iter 5000 --inbreed_tole 1e-9
+ 
+ 
