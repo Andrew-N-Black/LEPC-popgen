@@ -18,14 +18,8 @@ ggplot(data=x, aes(y=V1, x=V2,fill=SPECIES))+geom_point(size=6,pch=21)+ theme_cl
 
 #New DPS
  ggplot(data=x, aes(y=V1, x=V2,fill=DPS))+geom_point(size=7,pch=21)+ theme_classic() + xlab("PC1 (2.77%)") +ylab("PC2 (3.60%)")+geom_hline(yintercept=0,linetype="dashed")+geom_vline(xintercept =0,linetype="dashed")+scale_fill_manual("DPS", values=c("white","red","grey22"))
- 
- 
- 
- 
- 
- 
+
 #By EcoRegion
-#ggplot(data=PC1_3, aes(y=V2, x=V1))+geom_point(size=5,pch=21,aes(fill=metadata$HABITAT))+ theme_classic() + xlab("PC1 (3.50%)") +ylab("PC2 (1.03%)")+geom_hline(yintercept=0,linetype="dashed")+geom_vline(xintercept =0,linetype="dashed")+coord_flip()+scale_fill_manual("Ecoregion", values =c("Shinnery-Oak"="bisque","Mixed-Grass"="blue","Sand-Sagebrush"="darkorchid1","Shortgrass-CRP-Mosaic"="darkolivegreen3"))
- 
-#By DPS only
-#ggplot(data=PC1_3, aes(y=V2, x=V1,color=as.factor(metadata$DPS)))+geom_point(size=5,colour="black",pch=21,aes(fill=metadata$DPS))+ theme_classic() + xlab("PC1 (3.72%)") +ylab("PC2 (1.06%)")+scale_fill_manual("DPS", values =c("Southern"="yellow","Northern"="brown"))+geom_hline(yintercept=0,linetype="dashed")+geom_vline(xintercept =0,linetype="dashed")+coord_flip()
+ggplot(data=x, aes(y=V2, x=V1))+geom_point(size=5,pch=21,aes(fill=metadata$HABITAT))+ theme_classic() + xlab("PC1 (3.60%)") +ylab("PC2 (2.77%)")+geom_hline(yintercept=0,linetype="dashed")+geom_vline(xintercept =0,linetype="dashed")+coord_flip()+scale_fill_manual("Ecoregion", values =c("EOR"="red","SSOPR"="bisque","MGPR"="blue","SSBPR"="darkorchid1","SHGPR"="darkolivegreen3"))
+
+
