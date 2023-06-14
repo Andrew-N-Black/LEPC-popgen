@@ -18,6 +18,19 @@ ggplot(HET_FILT,aes(x=YEAR,y=HET,fill=SPECIES,color=SPECIES))+geom_boxplot()+sca
 HET_FILT$HABITAT <- ordered(HET_FILT$HABITAT,levels = c("EOR","MGPR","SHGPR","SSBPR","SSOPR"))
 ggplot(HET_FILT,aes(x=HABITAT,y=HET,fill=SPECIES))+geom_boxplot()+scale_fill_manual("", values =c("Tympanuchus pallidicinctus"="brown","Tympanuchus cupido"="goldenrod"))+xlab("")+ylab("Individual Heterozygosity")+theme_classic()+ theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1,size=12))+ylim(0.0018,0.0058)+theme(legend.position="top")
 
+pairwise.wilcox.test(HET_FILT$HET, HET_FILT$HABITAT, p.adjust.method = "BH")
+
+#Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
+
+#data:  HET_FILT$HET and HET_FILT$HABITAT
+      EOR     MGPR    SHGPR   SSBPR
+MGPR  0.664   -       -       -    
+SHGPR 0.862   0.664   -       -    
+SSBPR 0.111   0.147   0.111   -    
+SSOPR 1.1e-05 < 2e-16 < 2e-16 0.039
+
+
+
 #Test for normality
 shapiro.test(HET_FILT$HET)
 
