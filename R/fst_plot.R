@@ -17,3 +17,7 @@ ggplot(allo.sym_allo.north_south.gpc,aes(x=chr_mid, y=pi/50000,color=Chr)) + geo
 #Outside vs southern DPS:
 south_outside<-read.table("~/slidingwindow_south_outside_t2",header = T)
 ggplot(south_outside,aes(x=chr_mid, y=fst,color=chr)) + geom_line(linewidth=0.09,group=1)+theme(axis.text.x=element_text(size=.01, angle=90))+theme_classic()+theme(axis.title.x=element_blank(), axis.text.x=element_blank(),axis.ticks.x=element_blank())+ylab("Fst")+scale_color_manual(values=rep(c("black","grey"),98)) +theme(legend.position = "none")+geom_hline(yintercept=0.14, linetype="dashed",color = "blue", size=0.5)+ylim(c(0,1))
+
+#Species level comparison
+species<-read.table("~/slidingwindow_species_T2",header = T)
+ggplot(south_outside,aes(x=chr_mid, y=fst,color=chr)) + geom_point(size=0.1)+theme(axis.text.x=element_text(size=.01, angle=90))+theme_classic()+theme(axis.title.x=element_blank(), axis.text.x=element_blank(),axis.ticks.x=element_blank())+ylab("Fst")+scale_color_manual(values=rep(c("black","grey"),98)) +theme(legend.position = "none")+geom_hline(yintercept=0.10, linetype="dashed",color = "blue", size=0.5)+ylim(c(0,1))+ggtitle("GRPC vs LEPC")
