@@ -1,3 +1,16 @@
+Outside_South <- read_excel("Outside-South_both.xlsx")
+#Full genome, pi and fst
+ggplot(Outside_South,aes(x=chr_mid, y=value,color=Chr)) + geom_line(linewidth=0.09,group=1)+facet_wrap(~pop,ncol = 1,scales="free_y")+theme(axis.text.x=element_text(size=.01, angle=90))+theme_classic()+theme(axis.title.x=element_blank(), axis.text.x=element_blank(),axis.ticks.x=element_blank())+ylab("π")+scale_color_manual(values=rep(c("black","grey"),98)) +theme(legend.position = "none")
+
+#Z-chrom, pi and fst
+ggplot(subset(Outside_South, Chr %in% c("NW_026294813.1","NW_026294758.1")),aes(x=WinCenter, y=value,color=Chr)) + geom_line(linewidth=0.2)+facet_wrap(~pop~Chr,ncol = 2,scales="free_y")+theme(axis.text.x=element_text(size=.01, angle=90))+theme_classic()+theme(axis.title.x=element_blank(), axis.text.x=element_blank(),axis.ticks.x=element_blank())+ylab("π")+scale_color_manual(values=c("black","grey"))+theme(legend.position = "none")
+
+
+
+
+
+
+
 #fsts, south DPS and Allopatric GRPCs
 sout_out_fsts <- read.csv("~/sout_out_fsts.csv")
 #Full genome fsts
