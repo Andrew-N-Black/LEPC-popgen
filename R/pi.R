@@ -12,6 +12,9 @@ ggplot(fst_plot,aes(x=chr_mid, y=fst,color=chr,fill=outlier)) + geom_line(linewi
 ggplot(subset(x, pop %in% c("Outside","Southern")),aes(x=chr_mid, y=value,color=Chr)) + geom_line(linewidth=0.09,group=1)+facet_wrap(~pop,ncol = 1)+theme(axis.text.x=element_text(size=.01, angle=90))+theme_classic()+theme(axis.title.x=element_blank(), axis.text.x=element_blank(),axis.ticks.x=element_blank())+ylab("π")+scale_color_manual(values=rep(c("black","grey"),98)) +theme(legend.position = "none")
 
 
+# Allopatric vs hybrid vs southern pi, parsed by Z chrom
+allo_hybrid_south <- read.csv("~/tmp_allo_hybrid_south.csv")
+ggplot(subset(allo_hybrid_south, Chr %in% c("NW_026294813.1","NW_026294758.1")),aes(x=WinCenter, y=pi,color=pop)) + geom_line(linewidth=0.3)+facet_wrap(~Chr,ncol = 2)+theme(axis.text.x=element_text(size=.01, angle=90))+theme_classic()+theme(axis.title.x=element_blank(), axis.text.x=element_blank(),axis.ticks.x=element_blank())+ylab("π") +theme(legend.position = "none")+ylim(0,0.0065)
 
 
 
