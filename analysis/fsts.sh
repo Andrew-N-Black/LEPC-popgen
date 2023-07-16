@@ -2,7 +2,7 @@
 #SBATCH -N 1
 #SBATCH -p EM
 #SBATCH -t 5-00:00:00
-#SBATCH --ntasks-per-node=96
+#SBATCH --ntasks-per-node=48
 #SBATCH -J Fst_N_S
 #SBATCH -e %x_%j.err
 #SBATCH -o %x_%j.out
@@ -11,35 +11,35 @@ REF=../ncbi/ref_100kb.fa
 
 
 /jet/home/blackan/angsd/angsd -P 48 -out fst/south \
--minInd 124 -minQ 35 \
--bam ./south -doCounts 1 -GL 2 -doSaf 1 -anc $REF -ref $REF
+-minInd 124 -minQ 30 \
+-bam ./south -doCounts 1 -GL 1 -doSaf 1 -anc $REF -ref $REF
 
 /jet/home/blackan/angsd/angsd -P 48 -out fst/north \
--minInd 209 -minQ 35 \
--bam ./north -doCounts 1 -GL 2 -doSaf 1 -anc $REF -ref $REF
+-minInd 209 -minQ 30 \
+-bam ./north -doCounts 1 -GL 1 -doSaf 1 -anc $REF -ref $REF
 
 /jet/home/blackan/angsd/angsd -P 48 -out fst/SYM \
--minInd 10 -minQ 35 \
--bam ./bams_sympatric -doCounts 1 -GL 2 -doSaf 1 -ref $REF
+-minInd 10 -minQ 30 \
+-bam ./bams_sympatric -doCounts 1 -GL 1 -doSaf 1 -ref $REF
 
 /jet/home/blackan/angsd/angsd -P 48 -out fst/ALLO \
--minInd 7 -minQ 35 \
--bam ./bams_allopatric -doCounts 1 -GL 2 -doSaf 1 -anc $REF -ref $REF
+-minInd 7 -minQ 30 \
+-bam ./bams_allopatric -doCounts 1 -GL 1 -doSaf 1 -anc $REF -ref $REF
 
 
 #calculate the 1D SFS from allele freq likelihoods
-/jet/home/blackan/angsd/misc/realSFS fst/south.saf.idx -P 96 -fold 1 > fst/south.sfs
-/jet/home/blackan/angsd/misc/realSFS fst/north.saf.idx -P 96 -fold 1 > fst/north.sfs
-/jet/home/blackan/angsd/misc/realSFS fst/SYM.saf.idx -P 96 -fold 1 > fst/SYM.sfs
-/jet/home/blackan/angsd/misc/realSFS fst/ALLO.saf.idx -P 96 -fold 1 > fst/ALLO.sfs
+/jet/home/blackan/angsd/misc/realSFS fst/south.saf.idx -P 48 -fold 1 > fst/south.sfs
+/jet/home/blackan/angsd/misc/realSFS fst/north.saf.idx -P 48 -fold 1 > fst/north.sfs
+/jet/home/blackan/angsd/misc/realSFS fst/SYM.saf.idx -P 48 -fold 1 > fst/SYM.sfs
+/jet/home/blackan/angsd/misc/realSFS fst/ALLO.saf.idx -P 48 -fold 1 > fst/ALLO.sfs
 
 #calculate the 2D SFS
-/jet/home/blackan/angsd/misc/realSFS fst/south.saf.idx fst/north.saf.idx -P 96 > fst/south.north.ml
-/jet/home/blackan/angsd/misc/realSFS fst/ALLO.saf.idx fst/north.saf.idx -P 96 > fst/ALLO.north.ml
-/jet/home/blackan/angsd/misc/realSFS fst/ALLO.saf.idx fst/SYM.saf.idx -P 96 > fst/ALLO.SYM.ml
-/jet/home/blackan/angsd/misc/realSFS fst/ALLO.saf.idx fst/south.saf.idx -P 96 > fst/ALLO.south.ml
-/jet/home/blackan/angsd/misc/realSFS fst/SYM.saf.idx fst/south.saf.idx -P 96 > fst/SYM.south.ml
-/jet/home/blackan/angsd/misc/realSFS fst/SYM.saf.idx fst/north.saf.idx -P 96 > fst/SYM.north.ml
+/jet/home/blackan/angsd/misc/realSFS fst/south.saf.idx fst/north.saf.idx -P 48 > fst/south.north.ml
+/jet/home/blackan/angsd/misc/realSFS fst/ALLO.saf.idx fst/north.saf.idx -P 48 > fst/ALLO.north.ml
+/jet/home/blackan/angsd/misc/realSFS fst/ALLO.saf.idx fst/SYM.saf.idx -P 48 > fst/ALLO.SYM.ml
+/jet/home/blackan/angsd/misc/realSFS fst/ALLO.saf.idx fst/south.saf.idx -P 48 > fst/ALLO.south.ml
+/jet/home/blackan/angsd/misc/realSFS fst/SYM.saf.idx fst/south.saf.idx -P 48 > fst/SYM.south.ml
+/jet/home/blackan/angsd/misc/realSFS fst/SYM.saf.idx fst/north.saf.idx -P 48 > fst/SYM.north.ml
 
 #Now pairwise Fsts
 
