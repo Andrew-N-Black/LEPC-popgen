@@ -54,6 +54,18 @@ ggplot(data=x, aes(y=V1, x=V2))+geom_point(size=7,color="black",aes(shape=metada
 #By EcoRegion
 ggplot(data=x, aes(y=V2, x=V1))+geom_point(size=5,pch=21,aes(fill=metadata$HABITAT))+ theme_classic() + xlab("PC2 (3.60%)") +ylab("PC1 (2.77%)")+geom_hline(yintercept=0,linetype="dashed")+geom_vline(xintercept =0,linetype="dashed")+coord_flip()+scale_fill_manual("Ecoregion", values =c("EOR"="red","SSOPR"="bisque","MGPR"="blue","SSBPR"="darkorchid1","SHGPR"="darkolivegreen3"))
 
+#Figure S5
+library(readxl)
+library(pophelper)
+labels <- read_excel("/Users/andrew/Library/CloudStorage/Box-Box/Personal/Postdoc_Purdue/LEPC/analysis/labels.xlsx")
+
+list<-readQ(files ="~/pop_K2-combined-merged.Q")
+list<-readQ(files ="~/pop_K3-combined-merged.Q")
+plotQ(list,returnplot=T,exportplot=T,clustercol=c("goldenrod","darkorchid4","brown"),grplab=labels,ordergrp=T,showlegend=F,height=1.6,indlabsize=1.2,indlabheight=0.08,indlabspacer=1,barbordercolour="black",divsize = 0.05,grplabsize=1.0,barbordersize=0.1,linesize=0.4,showsp = F,splabsize = 0,outputfilename="merged_grouseK3",imgtype="pdf",exportpath=getwd(),divcol = "white",splabcol="black",grplabheight=1)
+
+#Sort by Ecoregion
+labels <- read_excel("labels2.xlsx")
+plotQ(list,returnplot=T,exportplot=T,clustercol=c("goldenrod","brown"),grplab=labels,ordergrp=T,showlegend=F,height=1.6,indlabsize=1.2,indlabheight=0.08,indlabspacer=1,barbordercolour="black",divsize = 0.25,grplabsize=1.0,barbordersize=0.1,linesize=0.4,showsp = F,splabsize = 0,outputfilename="full_grouse",imgtype="pdf",exportpath=getwd(),divcol = "black",splabcol="black",grplabheight=1)
 
 #Figure S7
 
