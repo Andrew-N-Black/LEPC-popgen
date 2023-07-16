@@ -14,7 +14,7 @@ do
   	for i in {1..10}
         do
                  /depot/fnrdewoody/apps/angsd/misc/NGSadmix -P 126  \
-                -K ${i} -minMaf 0.01 -maxiter 50000 -tol 1e-9 -tolLike50 1e-9 \
+                -K ${i} -minMaf 0.01  \
                 -likes final.beagle.gz \
                 -outfiles  ADX/R_${j}/K${i}_R${j}
                 i=$[$i+1]
