@@ -23,4 +23,5 @@ tabix -s1 -b2 -e2 grouse.freqs.tab.gz
 bcftools roh --AF-file grouse.freqs.tab.gz --output ROH_GROUSE_PLraw.txt --threads 128 angsdput.bcf
 
 awk '$1=="RG"' ROH_GROUSE_PLraw.txt > ROH_RG_all.txt
-#for i in `cat sample.names`; do  grep $i ROH_RG_all.txt  > $i.ROH.txt ; done
+for i in `cat sample.names`; do  grep $i ROH_RG_all.txt  > $i.ROH.txt ; done
+for i in `ls -1 *ROH.txt`; do python ROHparser.py $i > ${i}_results.txt ; done
