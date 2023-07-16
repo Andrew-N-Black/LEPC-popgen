@@ -1,4 +1,4 @@
-#Figure S1
+############################################ Figure S1 ###################################################################
 
 library(ggplot2)
 length_scaff <- read_excel("length_scaff.xlsx")
@@ -8,7 +8,7 @@ ggplot(data=new, aes(y=lepc_kb_length,x=reorder(lepc_kb_length,lepc_seq)))+geom_
 new<-subset(length_scaff,lepc_kb_length < 100,select=c(lepc_seq,lepc_kb_length))
 ggplot(data=new, aes(y=lepc_kb_length,x=reorder(lepc_kb_length,lepc_seq)))+geom_bar(stat="identity")+theme_classic()+ylab("Length (kb)")+xlab("Scaffold")+theme(axis.text.x=element_blank(), axis.ticks.x=element_blank())+ geom_hline(yintercept=100, linetype="dashed", color = "red")
 
-#Figure S2
+############################################ Figure S2 ###################################################################
 
 depth_breadth <- read_excel("metadata.xlsx")
 #breadth
@@ -18,7 +18,7 @@ ggplot(data=depth_breadth, aes(y=MAPPING_TOTAL, x=reorder(ID,MAPPING_TOTAL),fill
 #depth
 ggplot(data=depth_breadth, aes(y=DEPTH_POST, x=reorder(ID,DEPTH_POST),fill=SPECIES))+geom_bar(stat="identity")+scale_fill_manual("", values =c("Tympanuchus pallidicinctus"="brown","Tympanuchus cupido"="goldenrod"))+xlab("Sample (N=481)")+ylab("Depth Of Coverage")+theme( axis.ticks.x=element_blank(),axis.text.x = element_blank())+ geom_hline(yintercept=3, linetype="dashed", color = "white", linewidth=1)+theme(legend.position="top")
 
-#Figure S3
+############################################ Figure S3 ###################################################################
 library(readxl)
 metadata <- read_xlsx("metadata.xlsx")
 View(metadata)                              
@@ -35,7 +35,7 @@ x<-cbind(PC1_3,metadata)
  #By species and DPS
 ggplot(data=x, aes(y=V1, x=V2))+geom_point(size=7,color="black",aes(shape=metadata$DPS,fill=metadata$SPECIES))+ theme_classic() + xlab("PC2 (2.77%)") +ylab("PC1 (3.60%)")+geom_hline(yintercept=0,linetype="dashed")+geom_vline(xintercept =0,linetype="dashed")+scale_fill_manual("Species", values=c("goldenrod","brown"))+scale_shape_manual("DPS", values=c(25,21,21,21))+ theme(legend.position = "top")
 
-#Figure S4
+############################################ Figure S4 ###################################################################
 library(readxl)
 metadata <- read_xlsx("/Users/andrew/Library/CloudStorage/Box-Box/Personal/Postdoc_Purdue/LEPC/analysis/metadata_filt.xlsx")
 View(metadata)                              
@@ -54,7 +54,12 @@ ggplot(data=x, aes(y=V1, x=V2))+geom_point(size=7,color="black",aes(shape=metada
 #By EcoRegion
 ggplot(data=x, aes(y=V2, x=V1))+geom_point(size=5,pch=21,aes(fill=metadata$HABITAT))+ theme_classic() + xlab("PC2 (3.60%)") +ylab("PC1 (2.77%)")+geom_hline(yintercept=0,linetype="dashed")+geom_vline(xintercept =0,linetype="dashed")+coord_flip()+scale_fill_manual("Ecoregion", values =c("EOR"="red","SSOPR"="bisque","MGPR"="blue","SSBPR"="darkorchid1","SHGPR"="darkolivegreen3"))
 
-#Figure S5
+############################################ Figure S5 ###################################################################
+
+delta <- read_excel("analysis/delta.xlsx")
+ggplot(delta,aes(x=K,y=delta))+geom_line(color="black",linetype="solid",linewidth=0.8) + geom_point(color="black",size=2)+theme_classic()+ylab("∆K")
+
+############################################ Figure S6 ###################################################################
 library(readxl)
 library(pophelper)
 labels <- read_excel("/Users/andrew/Library/CloudStorage/Box-Box/Personal/Postdoc_Purdue/LEPC/analysis/labels.xlsx")
@@ -67,31 +72,25 @@ plotQ(list,returnplot=T,exportplot=T,clustercol=c("goldenrod","darkorchid4","bro
 labels <- read_excel("labels2.xlsx")
 plotQ(list,returnplot=T,exportplot=T,clustercol=c("goldenrod","brown"),grplab=labels,ordergrp=T,showlegend=F,height=1.6,indlabsize=1.2,indlabheight=0.08,indlabspacer=1,barbordercolour="black",divsize = 0.25,grplabsize=1.0,barbordersize=0.1,linesize=0.4,showsp = F,splabsize = 0,outputfilename="full_grouse",imgtype="pdf",exportpath=getwd(),divcol = "black",splabcol="black",grplabheight=1)
 
-#Figure S6
+############################################ Figure S7 ###################################################################
 library(ggplot2)
 library(readxl)
 library(ggpubr)
 library(dplyr)
 
-HET_FILT <- read_xlsx("~/Library/CloudStorage/Box-Box/Personal/Postdoc_Purdue/LEPC/analysis/metadata_filt.xlsx")
-
-#By DPS and Species
-HET_FILT$DPS <- ordered(HET_FILT$DPS,levels = c("Outside","Northern","Southern"))
-ggplot(HET_FILT,aes(x=DPS,y=HET,fill=SPECIES))+geom_boxplot()+scale_fill_manual("", values =c("Tympanuchus pallidicinctus"="brown","Tympanuchus cupido"="goldenrod"))+xlab("")+ylab("Individual Heterozygosity")+theme_classic()+ theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1,size=12))+ylim(0.0018,0.0058)+theme(legend.position="top")
-
-#By DPS and Species and Year
-HET_FILT$DPS <- ordered(HET_FILT$DPS,levels = c("Outside","Northern","Southern"))
-HET_FILT$YEAR <- ordered(HET_FILT$YEAR,levels = c("2008","2009","2010","2013","2014","2019","2020","2021","2022","2023"))
-ggplot(HET_FILT,aes(x=YEAR,y=HET,fill=SPECIES,color=SPECIES))+geom_boxplot(color="black",size=0.3)+scale_fill_manual("", values =c("Tympanuchus pallidicinctus"="brown","Tympanuchus cupido"="goldenrod"))+xlab("")+ylab("Individual Heterozygosity")+theme_classic()+ theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1,size=12))+ylim(0.0018,0.0058)+theme(legend.position="top")+facet_wrap(~DPS,ncol=3)+scale_color_manual("", values =c("Tympanuchus pallidicinctus"="brown","Tympanuchus cupido"="goldenrod"))
-#By Ecoregion
+HET_FILT <- read_xlsx("metadata_filt.xlsx")
 HET_FILT$HABITAT <- ordered(HET_FILT$HABITAT,levels = c("EOR","MGPR","SHGPR","SSBPR","SSOPR"))
 ggplot(HET_FILT,aes(x=HABITAT,y=HET,fill=SPECIES))+geom_boxplot()+scale_fill_manual("", values =c("Tympanuchus pallidicinctus"="brown","Tympanuchus cupido"="goldenrod"))+xlab("")+ylab("Individual Heterozygosity")+theme_classic()+ theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1,size=12))+ylim(0.0018,0.0058)+theme(legend.position="top")
 
-#Figure S7
 
+############################################ Figure S8 ###################################################################
+NA
+
+############################################ Figure S9 ###################################################################
 library(ggplot2)
 allo <- read_xlsx("~/ALLO.thetasWindow.t2.xlsx")
 south <- read_xlsx("south.thetasWindow.t2.xlsx")
 allo_south<-merge(x=allo,y=south,by=("chr_mid"))
 ggplot(allo_south,aes(x=chr_mid, y=Pi,color=Chr)) + geom_line(linewidth=0.09,group=1)+facet_wrap(~pop,ncol = 1)+theme(axis.text.x=element_text(size=.01, angle=90))+theme_classic()+theme(axis.title.x=element_blank(), axis.text.x=element_blank(),axis.ticks.x=element_blank())+ylab("π")+scale_color_manual(values=rep(c("black","grey"),98)) +theme(legend.position = "none")+ylim(0,0.03)
+
 
