@@ -18,6 +18,23 @@ ggplot(data=depth_breadth, aes(y=MAPPING_TOTAL, x=reorder(ID,MAPPING_TOTAL),fill
 #depth
 ggplot(data=depth_breadth, aes(y=DEPTH_POST, x=reorder(ID,DEPTH_POST),fill=SPECIES))+geom_bar(stat="identity")+scale_fill_manual("", values =c("Tympanuchus pallidicinctus"="brown","Tympanuchus cupido"="goldenrod"))+xlab("Sample (N=481)")+ylab("Depth Of Coverage")+theme( axis.ticks.x=element_blank(),axis.text.x = element_blank())+ geom_hline(yintercept=3, linetype="dashed", color = "white", linewidth=1)+theme(legend.position="top")
 
+#Figure S3
+library(readxl)
+metadata <- read_xlsx("metadata.xlsx")
+View(metadata)                              
+library(ggplot2)
+cov<-as.matrix(read.table("unfiltered2.cov"))
+axes<-eigen(cov)
+head(axes$values/sum(axes$values)*100)
+#[1] 3.6195732 2.7374010
+#[3] 0.9086318 0.8477194
+#[5] 0.7041967 0.6940067
+
+PC1_3<-as.data.frame(axes$vectors[,1:3])
+x<-cbind(PC1_3,metadata)
+ #By species and DPS
+ggplot(data=x, aes(y=V1, x=V2))+geom_point(size=7,color="black",aes(shape=metadata$DPS,fill=metadata$SPECIES))+ theme_classic() + xlab("PC2 (2.77%)") +ylab("PC1 (3.60%)")+geom_hline(yintercept=0,linetype="dashed")+geom_vline(xintercept =0,linetype="dashed")+scale_fill_manual("Species", values=c("goldenrod","brown"))+scale_shape_manual("DPS", values=c(25,21,21,21))+ theme(legend.position = "top")
+
 
 #Figure S7
 
