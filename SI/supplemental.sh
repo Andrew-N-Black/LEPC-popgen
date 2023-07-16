@@ -21,6 +21,28 @@ module load pcangsd
 
 pcangsd -b unfiltered.beagle.gz -o unfiltered --threads 128 --minMaf 0.01
 
+#Figure S8
+#!/bin/sh
+#SBATCH -A fnrdewoody
+#SBATCH -N 1
+#SBATCH -n 30
+#SBATCH -t 1-00:00:00
+#SBATCH --job-name=Dsuite
+#SBATCH -e abba2.e
+#SBATCH -o abba2.o
+#SBATCH --mem=60G
+
+
+module purge
+module load biocontainers
+ml angsd
+
+#Below was run when grouping by allopatric, sympatric, northern, southern
+angsd -doAbbababa2 1 -bam bam.filelist -sizeFile sizeFile.size -doCounts 1 -out bam.Angsd2 -useLast 0 -minMapQ 30 -p 128
+
+Rscript estAvgError.R angsdFile="bam.Angsd" sizeFile=sizeFile.size nameFile=names out="results" main="Prairie-Chicken"
+
+
 
 
 
