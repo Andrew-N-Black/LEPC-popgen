@@ -82,10 +82,10 @@ angsd -P 128 -out ex \
 
 #Allopatric GRPC only
 #wc -l ./bams_allopatric
-#18
-#18*.8=14
+#9
+#9*.8=7
 angsd -P 128 -out ALLO \
--minInd 14 -minQ 30\
+-minInd 7 -minQ 30\
 -bam ./bams_allopatric -doCounts 1 -GL 1 -doSaf 1 -anc $REF -ref $REF -rf regions.txt
 
 #Southern DPS only
