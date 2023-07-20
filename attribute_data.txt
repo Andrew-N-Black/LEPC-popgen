@@ -1,6 +1,6 @@
 
 |ID|SPECIES|LEK|SEX|AGE|STATE|WEIGHT|HABITAT|DPS|DATE|YEAR|
-|--||--|--|--|--|--|--|--|--|--|
+|--|--|--|--|--|--|--|--|--|--|
 |F11|Tympanuchus pallidicinctus|Beasley5B|Male|Adult|Texas||SSOPR|Southern|4/1/19|2019|
 |F121|Tympanuchus pallidicinctus|B1|Male|Adult|Texas|775|SSOPR|Southern|2/25/08|2008|
 |F123|Tympanuchus pallidicinctus|B1|Male|Juvenile|Texas|745|SSOPR|Southern|3/1/08|2008|
