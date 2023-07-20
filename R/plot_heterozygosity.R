@@ -61,46 +61,7 @@ data:  HET_FILT$HET and HET_FILT$DPS
          Northern
 Southern <2e-16  
 
-P value adjustment method: BH 
-
-
-#Summarize and compare groups, which may contain both species.
-HET_FILT <- read_xlsx("~/Library/CloudStorage/Box-Box/Personal/Postdoc_Purdue/LEPC/analysis/metadata_filt.xlsx")
-HET_FILT$DPS<-factor(HET_FILT$DPS,levels = c("Outside","Northern","Southern"))
-
-
-group_by(HET_FILT, DPS) %>%
-    summarise(
-        count = n(),
-        mean = mean(HET, na.rm = TRUE),
-        sd = sd(HET, na.rm = TRUE),
-        median = median(HET, na.rm = TRUE),
-        IQR = IQR(HET, na.rm = TRUE)
-    )
-
- DPS      count    mean       sd  median      IQR
-  <fct>    <int>   <dbl>    <dbl>   <dbl>    <dbl>
-1 Outside      9 0.00330 0.000107 0.00328 0.000145
-2 Northern   274 0.00341 0.000519 0.00326 0.000407
-3 Southern   150 0.00295 0.000327 0.00289 0.000187
-
-kruskal.test(HET ~ DPS, data = HET_FILT)
-
-data:  HET by DPS
-Kruskal-Wallis chi-squared = 195.44, df = 2,
-p-value < 2.2e-16
-
-pairwise.wilcox.test(HET_FILT$HET, HET_FILT$DPS, p.adjust.method = "BH")
-
-	Pairwise comparisons using Wilcoxon rank sum test with continuity correction 
-
-data:  HET_FILT$HET and HET_FILT$DPS 
-
-         Outside Northern
-Northern 0.68    -       
-Southern 5e-06   <2e-16  
-
-P value adjustment method: BH 
+P value adjustment method: BH  
 
 #BY SPECIES
 HET_FILT$SPECIES<-factor(HET_FILT$SPECIES,levels = c("Tympanuchus pallidicinctus","Tympanuchus cupido"))
