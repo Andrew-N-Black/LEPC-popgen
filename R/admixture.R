@@ -15,3 +15,9 @@ plotQ(list,returnplot=T,exportplot=T,clustercol=c("goldenrod","brown"),grplab=la
 list<-readQ(files ="~/pop_K3-combined-merged.Q") #All genome
 #list<-readQ(files ="~/pop_K3-combined-merged_lepc_Z.txt") #Z chrom only
 plotQ(list,returnplot=T,exportplot=T,clustercol=c("goldenrod","darkorchid4","brown"),grplab=labels,ordergrp=T,showlegend=F,height=1.6,indlabsize=1.2,indlabheight=0.08,indlabspacer=1,barbordercolour="black",divsize = 0.05,grplabsize=1.0,barbordersize=0.1,linesize=0.4,showsp = F,splabsize = 0,outputfilename="merged_grouseK3",imgtype="pdf",exportpath=getwd(),divcol = "white",splabcol="black",grplabheight=1)
+
+#Subset:
+
+list<-readQ(files ="~/K2_R2.qopt")
+both <- as.data.frame(labels[,c(3,12)])
+plotQ(list,returnplot=T,exportplot=T,clustercol=c("brown","goldenrod"),grplab=both,ordergrp=T,showlegend=F,height=1.6,indlabsize=1.2,indlabheight=0.08,indlabspacer=1,barbordercolour="black",divsize = 0.10,grplabsize=1.0,barbordersize=0.1,linesize=0.6,showsp = F,splabsize = 0,outputfilename="subset_k2",imgtype="png",exportpath=getwd(),divtype=1,divcol = "white",splabcol="black",grplabheight=1)
