@@ -55,7 +55,6 @@ angsd -doAbbababa2 1 -bam bam.filelist -sizeFile sizeFile.size -doCounts 1 -out 
 
 Rscript estAvgError.R angsdFile="bam.Angsd" sizeFile=sizeFile.size nameFile=names out="results" main="Prairie-Chicken"
 
-
 ############################################ Figure S9 ###################################################################
 #!/bin/sh
 #SBATCH -A highmem
@@ -75,7 +74,6 @@ REF=/scratch/bell/blackan/LEPC/shotgun/ncbi/ref_100kb.fa
 #All allopatric GRPC and Southern DPS LEPC
 #wc -l ./bams_allo.south
 #159
-#159*.8=127
 angsd -P 128 -out ex \
 -minInd 127 -minQ 30\
 -bam ./bams_allo.south -doCounts 1 -GL 1 -doSaf 1 -anc $REF -ref $REF -rf regions.txt
@@ -83,17 +81,15 @@ angsd -P 128 -out ex \
 #Allopatric GRPC only
 #wc -l ./bams_allopatric
 #9
-#9*.8=7
 angsd -P 128 -out ALLO \
 -minInd 7 -minQ 30\
 -bam ./bams_allopatric -doCounts 1 -GL 1 -doSaf 1 -anc $REF -ref $REF -rf regions.txt
 
 #Southern DPS only
 #wc -l ./bams_south
-#151
-#151*.8=121
+#150
 angsd -P 128 -out south \
--minInd 121 -minQ 30\
+-minInd 120 -minQ 30\
 -bam ./bams_south -doCounts 1 -GL 1 -doSaf 1 -anc $REF -ref $REF -rf regions.txt
 
 #calculate the 1D SFS from allele freq likelihoods
