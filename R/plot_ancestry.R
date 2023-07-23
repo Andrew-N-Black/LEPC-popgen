@@ -90,7 +90,7 @@ plot(coords, pch=19, cex=0.4,xlab="Longitude", ylab="Latitude", xlim = c(-110, -
 m<- maps::map("state", c("Texas","Oklahoma", "Kansas", "New Mexico", "Colorado", "Nebraska", "South Dakota", "North Daokta", "Minnesota"), exact=F,
               boundary=T, plot=T, col=1, add = T, interior=F)
 
-my.colors <- c("goldenrod", "black", "brown")
+my.colors <- c("goldenrod", "grey32", "brown")
 my.palette <- CreatePalette(my.colors, 9)
 barplot(k3qmatrix, border = NA, space = 0, 
         main = "Ancestry matrix", 
