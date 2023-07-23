@@ -61,7 +61,7 @@ Rscript estAvgError.R angsdFile="bam.Angsd" sizeFile=sizeFile.size nameFile=name
 #SBATCH -N 1
 #SBATCH -n 128
 #SBATCH -t 1-00:00:00
-#SBATCH --job-name=Thetas
+#SBATCH --job-name=Thetas_PC
 #SBATCH -e Thetas.e
 #SBATCH -o Thetas.o
 #SBATCH --mem=500G
