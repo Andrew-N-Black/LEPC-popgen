@@ -92,4 +92,11 @@ south <- read_xlsx("south.thetasWindow.t2.xlsx")
 allo_south<-merge(x=allo,y=south,by=("chr_mid"))
 ggplot(allo_south,aes(x=chr_mid, y=Pi,color=Chr)) + geom_line(linewidth=0.09,group=1)+facet_wrap(~pop,ncol = 1)+theme(axis.text.x=element_text(size=.01, angle=90))+theme_classic()+theme(axis.title.x=element_blank(), axis.text.x=element_blank(),axis.ticks.x=element_blank())+ylab("π")+scale_color_manual(values=rep(c("black","grey"),98)) +theme(legend.position = "none")+ylim(0,0.03)
 
+############################################ Figure S10 ###################################################################
+great<-read_xlsx("GRSG.thetasWindow.t2.xlsx")
+gun<-read_xlsx("GNSG.thetasWindow.t2.xlsx")
+great_gun<-merge(x=great,y=gun,by=("chr_mid"))
+#modify with excel then re-import
+great_gun <- read.csv("~/great_gun.csv")
+ggplot(great_gun,aes(x=chr_mid, y=pi,color=Chr)) + geom_line(linewidth=0.09,group=1)+facet_wrap(~pop,ncol = 1)+theme(axis.text.x=element_text(size=.01, angle=90))+theme_classic()+theme(axis.title.x=element_blank(), axis.text.x=element_blank(),axis.ticks.x=element_blank())+ylab("øπ")+scale_color_manual(values=rep(c("black","grey"),100)) +theme(legend.position = "none")+ylim(0,0.03)
 
