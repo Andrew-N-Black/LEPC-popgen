@@ -2,9 +2,10 @@
 
 library(readxl)
 library(pophelper)
-metadata_filt <- read_excel("Library/CloudStorage/Box-Box/Personal/Postdoc_Purdue/LEPC/analysis/metadata_filt.xlsx")
-both <- as.data.frame(metadata_filt[,c(3,12)])
-
+#metadata_filt <- read_excel("Library/CloudStorage/Box-Box/Personal/Postdoc_Purdue/LEPC/analysis/metadata_filt.xlsx")
+metadata_filt <- read_excel("labels3.xlsx")
+both <- as.data.frame(metadata_filt[,c(1,3,5)])
+both$LAT<-as.character(both$LAT)
 #K2
 list<-readQ(files ="Library/CloudStorage/Box-Box/Personal/Postdoc_Purdue/LEPC/analysis/pop_K2-combined-merged.txt")
 
