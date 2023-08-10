@@ -2,14 +2,9 @@ library(reshape2)
 metadata <- read_xlsx("/Users/andrew/Library/CloudStorage/Box-Box/Personal/Postdoc_Purdue/LEPC/analysis/metadata_filt.xlsx")
 sub<-metadata[,c("ID","DPS","SPECIES","fROH_100kb-1Mb","fROH_1Mb","fROH_total")]
 melt_data<-melt(sub,id.vars = c("ID","DPS","SPECIES"))
-melt_data$DPS <- factor(melt_data$DPS, levels = c("Outside","Northern", "Southern"))
+melt_data$DPS <- factor(melt_data$DPS, levels = c("Allopatric","Sympatric","Northern", "Southern"))
 
-ggplot(melt_data, aes(fill=SPECIES, y=value, x=reorder(ID,value))) +geom_bar(stat="identity",position="dodge")+facet_grid(variable~DPS,scales = "free")+theme(axis.title.x=element_blank(),axis.text.x=element_blank(),axis.ticks.x=element_blank())+theme_classic()+scale_fill_manual("", values =c("Tympanuchus pallidicinctus"="brown","Tympanuchus cupido"="goldenrod"))+ylab("fROH")+xlab("Sample (N=433)")+
-    theme(legend.position="none")+theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank())
-
-
-
-
+ggplot(melt_data, aes(fill=SPECIES, y=value, x=reorder(ID,value))) +geom_bar(stat="identity",position="dodge")+facet_grid(variable~DPS,scales = "free")+theme(axis.title.x=element_blank(),axis.text.x=element_blank(),axis.ticks.x=element_blank())+theme_classic()+scale_fill_manual("", values =c("Tympanuchus pallidicinctus"="brown","Tympanuchus cupido"="goldenrod"))+ylab("fROH")+xlab("Sample (N=433)")+theme(legend.position="none")+theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank())+theme(axis.text.y = element_text(size=12))+theme(legend.position="none")+theme(axis.text=element_text(size=14),axis.title=element_text(size=22,face="italic"))+theme(strip.text = element_text(size = 18))
 
 #Test for normality
 shapiro.test(HET_FILT$`fROH_100kb-1Mb`)
