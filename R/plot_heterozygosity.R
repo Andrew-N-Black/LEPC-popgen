@@ -3,16 +3,16 @@ library(readxl)
 library(ggpubr)
 library(dplyr)
 
-HET_FILT <- read_xlsx("~/Library/CloudStorage/Box-Box/Personal/Postdoc_Purdue/LEPC/analysis/metadata_filt.xlsx")
-
 #By DPS and Species
-HET_FILT$DPS <- ordered(HET_FILT$DPS,levels = c("Outside","Northern","Southern"))
-ggplot(HET_FILT,aes(x=DPS,y=HET,fill=SPECIES))+geom_boxplot()+scale_fill_manual("", values =c("Tympanuchus pallidicinctus"="brown","Tympanuchus cupido"="goldenrod"))+xlab("")+ylab("Individual Heterozygosity")+theme_classic()+ theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1,size=12))+ylim(0.0018,0.0058)+theme(legend.position="top")
+HET_FILT <- read_xlsx("~/Library/CloudStorage/Box-Box/Personal/Postdoc_Purdue/LEPC/analysis/metadata_filt.xlsx")
+HET_FILT$DPS <- ordered(HET_FILT$DPS,levels = c("Allopatric","Sympatric","Northern","Southern"))
+ggplot(HET_FILT,aes(y=HET,fill=SPECIES))+geom_boxplot()+scale_fill_manual("", values =c("Tympanuchus pallidicinctus"="brown","Tympanuchus cupido"="goldenrod"))+xlab("")+ylab("H")+theme_classic()+ theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1,size=12))+ theme(axis.text.y = element_text(size=12))+ylim(0.0018,0.0058)+theme(legend.position="none")+theme(axis.text=element_text(size=14),axis.title=element_text(size=22,face="italic"))+theme(strip.text = element_text(size = 18))+facet_wrap(~DPS,ncol=4)+theme(axis.title.x=element_blank(),axis.text.x=element_blank(),axis.ticks.x=element_blank())
 
 #By DPS and Species and Year
-HET_FILT$DPS <- ordered(HET_FILT$DPS,levels = c("Outside","Northern","Southern"))
+HET_FILT <- read_xlsx("~/Library/CloudStorage/Box-Box/Personal/Postdoc_Purdue/LEPC/analysis/metadata_filt.xlsx")
+HET_FILT$DPS <- ordered(HET_FILT$DPS,levels = c("Allopatric","Sympatric","Northern","Southern"))
 HET_FILT$YEAR <- ordered(HET_FILT$YEAR,levels = c("2008","2009","2010","2013","2014","2019","2020","2021","2022","2023"))
-ggplot(HET_FILT,aes(x=YEAR,y=HET,fill=SPECIES,color=SPECIES))+geom_boxplot(color="black",size=0.3)+scale_fill_manual("", values =c("Tympanuchus pallidicinctus"="brown","Tympanuchus cupido"="goldenrod"))+xlab("")+ylab("Individual Heterozygosity")+theme_classic()+ theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1,size=12))+ylim(0.0018,0.0058)+theme(legend.position="top")+facet_wrap(~DPS,ncol=3)+scale_color_manual("", values =c("Tympanuchus pallidicinctus"="brown","Tympanuchus cupido"="goldenrod"))
+ggplot(HET_FILT,aes(x=YEAR,y=HET,fill=SPECIES,color=SPECIES))+geom_boxplot(color="black",size=0.2)+scale_fill_manual("", values =c("Tympanuchus pallidicinctus"="brown","Tympanuchus cupido"="goldenrod"))+xlab("")+ylab("H")+theme_classic()+ theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1,size=12))+ylim(0.0018,0.0058)+theme(legend.position="none")+facet_wrap(~DPS,ncol=4)+scale_color_manual("", values =c("Tympanuchus pallidicinctus"="brown","Tympanuchus cupido"="goldenrod"))+ theme(axis.text.y = element_text(size=12))+theme(legend.position="none")+theme(axis.text=element_text(size=14),axis.title=element_text(size=22,face="italic"))+theme(strip.text = element_text(size = 18))
 
 pairwise.wilcox.test(HET_FILT$HET, HET_FILT$HABITAT, p.adjust.method = "BH")
 
