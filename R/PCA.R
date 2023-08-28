@@ -1,15 +1,21 @@
+#Load libraries
 library(readxl)
-metadata <- read_xlsx("/Users/andrew/Library/CloudStorage/Box-Box/Personal/Postdoc_Purdue/LEPC/analysis/metadata_filt.xlsx")
-View(metadata)                              
 library(ggplot2)
-cov<-as.matrix(read.table("/Users/andrew/Library/CloudStorage/Box-Box/Personal/Postdoc_Purdue/LEPC/analysis/final.cov"))
+
+#Read in metadata
+metadata <- read_xlsx("metadata_filt.xlsx")                             
+
+#Read in covariation matrix
+cov<-as.matrix(read.table("final.cov"))
+
+#Extract and calculate eplained variation
 axes<-eigen(cov)
 head(axes$values/sum(axes$values)*100)
 #[1] 3.6010985 2.7703365 0.9533315
 #[4] 0.8708315 0.7294636 0.4497553
 
 
-
+#Bind vectors with metadata and plot
 PC1_3<-as.data.frame(axes$vectors[,1:3])
 x<-cbind(PC1_3,metadata)
  #By species and DPS
