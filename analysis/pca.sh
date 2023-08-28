@@ -2,7 +2,7 @@
 #SBATCH -A fnrpupfish
 #SBATCH -n 64
 #SBATCH -t 1-00:00:00
-#SBATCH --job-name=seelction
+#SBATCH --job-name=lepc_pca
 #SBATCH --error=pca.e
 #SBATCH --output=pca.o
 #SBATCH --mem=120G
