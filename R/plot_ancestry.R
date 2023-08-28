@@ -4,7 +4,7 @@
 #library(devtools)
 #devtools::install_github("bcm-uga/TESS3_encho_sen")
 
-
+#Load libraries
 library(tess3r)
 library(maps)
 library(tidyverse)
@@ -12,7 +12,8 @@ library(fields)
 library(rworldmap)
 library(sp)
 
-wd <- "C://Users/andre/OneDrive/Documents/DeWoody Lab/LEPC/Ancestry_Coefficient_Map"
+#Set working directory
+wd <- "Ancestry_Coefficient_Map"
 setwd(wd)
 
 
