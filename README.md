@@ -8,5 +8,5 @@ Bondo, K.J., Fricke, K.A., Gregory, A.,
 <p align="center">
 Grisham, B., Lowe, Z., & DeWoody, J.A.
 <p align="center">
-submitted
+PNAS Nexus
 </p>
